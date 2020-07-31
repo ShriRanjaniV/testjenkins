@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'slave-01' }
 
     triggers {
         pollSCM('*/5 * * * 1-5')
@@ -29,7 +29,7 @@ pipeline {
                 echo "Building virtualenv"
                 sh  ''' conda create --yes -n UPLOADER python
                         source activate UPLOADER
-                        pip install -r requirements/dev.txt
+                        pip install -r requirements.txt
                     '''
             }
         }
